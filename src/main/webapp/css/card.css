@@ -1,0 +1,163 @@
+.card {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  transition: box-shadow 0.2s ease-in-out;
+}
+.card {
+  margin-top: 20px;
+  box-sizing: border-box;
+  border-radius: 2px;
+  background-clip: padding-box;
+  cursor: pointer;
+  overflow: auto;
+}
+.card:hover
+{
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.50);
+} 
+.card span.card-title {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+.card .card-image {
+  position: relative;
+  float: left;
+  width: 125px;
+  height: 125px;
+  overflow: hidden;
+  display: inline-block;
+  background-color: #f5f5f5;
+  text-align: center;
+  vertical-align: middle;
+}
+.card .card-image img {
+  border-radius: 2px 2px 0 0;
+  background-clip: padding-box;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  margin: auto;
+  
+}
+.card .card-content
+{
+  padding: 5px 5px 2px 16px;
+  border-radius: 0 0 2px 2px;
+  background-clip: padding-box;
+  box-sizing: border-box;
+  display: inline-block;
+  width: calc(100% - 125px)
+}
+.card .card-content p {
+  color: inherit;
+  margin: 0px;
+}
+.card .card-content .card-content-header 
+{
+	display: flex;
+	width: 100%;
+	padding-top: 15px;
+	font-weight: bold;
+}
+.card .card-content .card-content-info
+{
+	display: flex;
+	overflow: hidden;
+	width: 100%;
+}
+.card .card-content .card-content-info p
+{
+	overflow: hidden;
+  	text-overflow: ellipsis;
+  	white-space: nowrap;
+}
+.card .card-content .card-content-info span.tag-price
+{
+	align-self: center;
+	text-align: right;
+	padding-right: 5px;
+	white-space: nowrap;
+	display: inline-block;
+}
+.card .card-content .card-content-func
+{
+	border-left: 1px solid rgba(160, 160, 160, 0.2);
+	font-size: 11px;
+	color: #adadad;
+	overflow: hidden;
+	padding-left: 5px;
+	display:inline-block;
+	width: 100%;
+}
+.card .card-content span.card-title {
+  line-height: 48px;
+}
+.card .card-content h1,h2,h3,h4,h5.card-title 
+{
+  margin-top: 0px;
+  margin-bottom: 5px;
+  width: calc(100% - 45px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.card .card-content span.tag-eval
+{
+	align-self: center;
+	display: inline-block;
+	position: relative;
+	font-size: 14px;
+	width: 45px;
+}
+.card .card-action {
+  border-top: 1px solid rgba(160, 160, 160, 0.2);
+  padding: 16px;
+  clear: both;
+}
+.card .card-action a {
+  color: #ffab40;
+  margin-right: 16px;
+  transition: color 0.3s ease;
+  text-transform: uppercase;
+}
+.card .card-action a:hover {
+  color: #ffd8a6;
+  text-decoration: none;
+}
+@media screen and (max-width: 576px)
+{
+	.card .card-image
+	{
+		width: 100px;
+		height: 100px;
+	}
+	.card .card-content
+	{
+	  	width: calc(100% - 100px)
+	}
+}
+@media screen and (max-width: 375px)
+{
+	.card .card-image
+	{
+		width: 75px;
+		height: 75px;
+	}
+	.card .card-content
+	{
+	  	width: calc(100% - 75px)
+	}
+	.card .card-content h1,h2,h3,h4,h5.card-title 
+	{
+		font-size: 1.1em;
+	}
+	.card .card-content .card-content-func
+	{
+		display: none;
+	}
+	.card .card-content .card-content-info p
+	{
+		font-size: 11px;
+	}
+}

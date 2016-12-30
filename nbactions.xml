@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>run</actionName>
+            <packagings>
+                <packaging>jar</packaging>
+            </packagings>
+            <goals>
+                <goal>process-classes</goal>
+                <goal>org.codehaus.mojo:exec-maven-plugin:1.2.1:exec</goal>
+            </goals>
+            <properties>
+                <exec.args>-classpath %classpath ${packageClassName}</exec.args>
+                <exec.executable>java</exec.executable>
+                <Env.DATABASE_URL>postgres://xogedsiotnpich:Ww-Myo8dazR2Wjms8p416jPHUZ@ec2-23-21-102-155.compute-1.amazonaws.com:5432/de1jpt0aitj0hr</Env.DATABASE_URL>
+                <Env.SENDGRID_ACTIVE>Off</Env.SENDGRID_ACTIVE>
+                <Env.SENDGRID_FROM>contato@saudosapadoca.com.br</Env.SENDGRID_FROM>
+            </properties>
+        </action>
+        <action>
+            <actionName>debug</actionName>
+            <packagings>
+                <packaging>jar</packaging>
+            </packagings>
+            <goals>
+                <goal>process-classes</goal>
+                <goal>org.codehaus.mojo:exec-maven-plugin:1.2.1:exec</goal>
+            </goals>
+            <properties>
+                <exec.args>-Xdebug -Xrunjdwp:transport=dt_socket,server=n,address=${jpda.address} -classpath %classpath ${packageClassName}</exec.args>
+                <exec.executable>java</exec.executable>
+                <jpda.listen>true</jpda.listen>
+                <Env.DATABASE_URL>postgres://xogedsiotnpich:Ww-Myo8dazR2Wjms8p416jPHUZ@ec2-23-21-102-155.compute-1.amazonaws.com:5432/de1jpt0aitj0hr</Env.DATABASE_URL>
+                <Env.SENDGRID_ACTIVE>Off</Env.SENDGRID_ACTIVE>
+                <Env.SENDGRID_FROM>contato@saudosapadoca.com.br</Env.SENDGRID_FROM>
+            </properties>
+        </action>
+    </actions>

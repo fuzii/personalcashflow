@@ -1,0 +1,30 @@
+p
+{
+	font-size: 1.2em;
+}
+@media screen and (max-width: 375px)
+{
+	*
+	{
+		font-size: 11px;
+	}
+	h1,h2,h3,h4,h5,h6
+	{
+		font-size: 1.2em;
+	}
+	label
+	{
+		font-size: 11px;
+	}
+}
+@media screen and (max-width: 768px)
+{
+	h1 
+	{
+		font-size: 1.5em;
+	}
+	p
+	{
+		font-size: 1em;
+	}
+}

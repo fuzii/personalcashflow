@@ -1,0 +1,27 @@
+{
+  "ecmaVersion": 5,
+  "plugins": {
+    "guess-types": {
+      
+    },
+    "outline": {
+      
+    },
+    "browser-extension": {
+      
+    },
+    "gmaps3.frozen": {
+      
+    },
+    "bootstrap": {
+      
+    },
+    "jquery-extension": {
+      
+    }
+  },
+  "libs": [
+    "browser",
+    "jquery"
+  ]
+}
