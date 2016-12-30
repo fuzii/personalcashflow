@@ -5,31 +5,31 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import model.User;
+import model.Responsavel;
 
-public class UserDao { 
+public class ResponsavelDao { 
 
-	public static User Insert(User user) {	
+	public static Responsavel Insert(Responsavel responsavel) {	
 		
 		try {
 			
-			// insert user
+			// insert responsavel
 			Connection connection = new ConnectionFactory().getConnection();
-			PreparedStatement stmt = connection.prepareStatement("INSERT INTO user_application (login,password) VALUES (?,CRYPT(?,GEN_SALT('md5')))",Statement.RETURN_GENERATED_KEYS);
-			stmt.setString(1,user.getUserLogin());
-			stmt.setString(2,user.getUserPassword().toString());
+			PreparedStatement stmt = connection.prepareStatement("INSERT INTO responsavel (nome,password) VALUES (?,MD5(?))",Statement.RETURN_GENERATED_KEYS);
+			stmt.setString(1,responsavel.getNome());
+			stmt.setString(2,responsavel.getPassword().toString());
 			stmt.execute();
 
 			// get generated account id
 			ResultSet rs = stmt.getGeneratedKeys();
 			if(rs.next())
-			    user.setUserId(rs.getLong(1));
+			    responsavel.setId(rs.getInt(1));
 					
 			rs.close();
 			stmt.close();
 			connection.close();
 			
-			return user;
+			return responsavel;
 						
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -37,14 +37,14 @@ public class UserDao {
 		
 	}
 
-	public static boolean Login(User user) {	
+	public static boolean Login(Responsavel responsavel) {	
 		
 		try {
 			
 			Connection connection = new ConnectionFactory().getConnection();
-			PreparedStatement stmt = connection.prepareStatement("SELECT * FROM user_application WHERE login=? AND password = CRYPT(?,password)");
-			stmt.setString(1,user.getUserLogin());
-			stmt.setString(2,new String(user.getUserPassword()));
+			PreparedStatement stmt = connection.prepareStatement("SELECT * FROM responsavel WHERE nome=? AND password = MD5(?)");
+			stmt.setString(1,responsavel.getNome());
+			stmt.setString(2,new String(responsavel.getPassword()));
 
 			ResultSet rs = stmt.executeQuery();
 			boolean login = rs.next();

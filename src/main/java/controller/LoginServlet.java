@@ -7,8 +7,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import dao.UserDao;
-import model.User;
+import dao.ResponsavelDao;
+import model.Responsavel;
 
 @WebServlet("/login") 
 public class LoginServlet extends HttpServlet{
@@ -16,13 +16,13 @@ public class LoginServlet extends HttpServlet{
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
 		// request
-		User user = new User();
-		user.setUserLogin(request.getParameter("login"));
-		user.setUserPassword(request.getParameter("password").toCharArray());
+		Responsavel responsavel = new Responsavel();
+		responsavel.setNome(request.getParameter("login"));
+		responsavel.setPassword(request.getParameter("password").toCharArray());
 		
 		// response
 		PrintWriter out = response.getWriter();
-		out.print(UserDao.Login(user));
+		out.print(ResponsavelDao.Login(responsavel));
 		
 	}
 	

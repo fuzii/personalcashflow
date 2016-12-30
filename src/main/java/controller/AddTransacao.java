@@ -8,31 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.json.JSONObject;
-import dao.AccountDao;
+import dao.TransacaoDao;
 import formatter.GenerateJSON;
 import formatter.GenerateObject;
-import model.Account;
-import util.SendGridEmail;
+import model.Transacao;
 
-@WebServlet("/addAccount")
-public class AddAccountServlet extends HttpServlet{ 
+@WebServlet("/addTransacao")
+public class AddTransacao extends HttpServlet{ 
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
 		try{
 			
-			Account account = GenerateObject.GetAccount(request);
-			account = AccountDao.Insert(account);
-	
-			
-			// send confirmation mail
-			if(System.getenv("SENDGRID_ACTIVE")=="On"){
-				String from = System.getenv("SENDGRID_FROM");
-				String subject = "[Saudosa Padoca] - Confirmacao de cadastro";
-				String content = "Obrigado por se cadastrar no...";
-				String to = account.getEmail();
-				SendGridEmail.Send(from, to, subject, content);
-			}
+			Transacao transacao = GenerateObject.GetTransacao(request);
+			TransacaoDao.Insert(transacao);
 	
 			
 			// response
@@ -46,7 +35,8 @@ public class AddAccountServlet extends HttpServlet{
 			
 			JSONObject jsonMain = new JSONObject();
 			PrintWriter out = response.getWriter();
-			out.print(jsonMain.put("account",GenerateJSON.GetAccountJSON(account)));
+			out.print(jsonMain.put("product",GenerateJSON.GetTransacaoJSON(transacao)));
+			
 	
 		} catch (Exception e) {
 			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.toString());
