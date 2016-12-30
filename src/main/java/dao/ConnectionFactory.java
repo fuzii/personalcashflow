@@ -10,7 +10,7 @@ public class ConnectionFactory {
 	
 	public Connection getConnection(){
 
-		try{
+		try{			
 			
 			Class.forName("org.postgresql.Driver");
 			
