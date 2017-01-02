@@ -58,16 +58,21 @@ public class TransacaoDao {
 			Connection connection = new ConnectionFactory().getConnection();
 			String query = "SELECT * FROM transacao WHERE (year(data) = year(?) AND month(data) = month(?))"; 
 			
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(data);
+			
 			Calendar current = Calendar.getInstance();
 			current.set(3,1); //set do dia para 01
-				
-			if(!data.before(current.getTime()))
+
+			if(!data.before(current.getTime()) || (cal.get(Calendar.MONTH)==current.get(Calendar.MONTH) || cal.get(Calendar.YEAR)==current.get(Calendar.YEAR)))
 				query += " OR (status='Base')";
 				
 			PreparedStatement stmt = connection.prepareStatement(query);
 			
-			stmt.setDate(1,new Date(data.getTime()));
-			stmt.setDate(2,new Date(data.getTime()));
+			cal.set(Calendar.DAY_OF_MONTH, 1);    
+			
+			stmt.setDate(1,new Date(cal.getTime().getTime()));
+			stmt.setDate(2,new Date(cal.getTime().getTime()));
 			
 			ResultSet rs = stmt.executeQuery();
 
@@ -86,8 +91,10 @@ public class TransacaoDao {
 				transacao.setDescricao(rs.getString("descricao"));
 				transacao.setValor(rs.getDouble("valor"));
 				transacao.setStatus(rs.getString("status"));
-				transacao.setData(rs.getDate("data"));
-										
+				
+				if(!transacao.getStatus().equals("Base"))
+					transacao.setData(rs.getDate("data"));
+				
 				transacoes.add(transacao);
 				
 			}

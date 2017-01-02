@@ -35,16 +35,17 @@ public class GenerateJSON {
 	}
 
 
-	@SuppressWarnings("null")
 	public static JSONArray GetTransacoesJSON (List<Transacao> transacoes){
 		
 		JSONArray jsonTransacoes = null;
-				
+		JSONObject jsonTransacao = null;
+		
 		try {
 
+			jsonTransacoes = new JSONArray();
+			
 			for(Transacao transacao : transacoes){
 
-				JSONObject jsonTransacao = null;
 				jsonTransacao = new JSONObject();			
 				jsonTransacao.put("id",transacao.getId());
 				jsonTransacao.put("data",transacao.getData());
