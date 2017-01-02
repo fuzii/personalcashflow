@@ -1,6 +1,5 @@
 package model;
 
-import java.util.Currency;
 import java.util.Date;
 
 public class Transacao {
@@ -11,7 +10,7 @@ public class Transacao {
 	private Responsavel responsavel;
 	private Categoria categoria;
 	private String status;
-	private Currency valor;
+	private Double valor;
 	
 	public int getId() {
 		return id;
@@ -49,10 +48,10 @@ public class Transacao {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public Currency getValor() {
+	public Double getValor() {
 		return valor;
 	}
-	public void setValor(Currency valor) {
+	public void setValor(Double valor) {
 		this.valor = valor;
 	}
 		

@@ -2,6 +2,10 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,18 +14,17 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONObject;
 import dao.TransacaoDao;
 import formatter.GenerateJSON;
-import formatter.GenerateObject;
 import model.Transacao;
 
-@WebServlet("/addTransacao")
-public class AddTransacao extends HttpServlet{ 
+@WebServlet("/listTransacao")
+public class ListTransacaoServlet extends HttpServlet{ 
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
 		try{
 			
-			Transacao transacao = GenerateObject.GetTransacao(request);
-			TransacaoDao.Insert(transacao);
+			DateFormat df = new SimpleDateFormat("yyyy-MM");
+			List<Transacao> transacoes = TransacaoDao.ListaMes((Date)df.parse(request.getParameter("data")));
 	
 			
 			// response
@@ -35,7 +38,7 @@ public class AddTransacao extends HttpServlet{
 			
 			JSONObject jsonMain = new JSONObject();
 			PrintWriter out = response.getWriter();
-			out.print(jsonMain.put("product",GenerateJSON.GetTransacaoJSON(transacao)));
+			out.print(jsonMain.put("transacoes",GenerateJSON.GetTransacoesJSON(transacoes)));
 			
 	
 		} catch (Exception e) {
